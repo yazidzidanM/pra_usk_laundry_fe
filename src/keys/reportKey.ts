@@ -1,0 +1,1 @@
+export const getReportsQueryKey = (dari: string, sampai: string) => ["Reports", dari, sampai];

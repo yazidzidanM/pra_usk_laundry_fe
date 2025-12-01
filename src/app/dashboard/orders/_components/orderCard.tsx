@@ -1,0 +1,98 @@
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { IOrder } from "@/hooks/orders/useGetOrders";
+import clsx from "clsx";
+
+interface OrderCardProps {
+  order: IOrder;
+  onAccept: (id: number) => void;
+  onReject: (id: number) => void;
+}
+
+export const OrderCard: React.FC<OrderCardProps> = ({
+  order,
+  onAccept,
+  onReject,
+}) => {
+  const statusColor = clsx(
+    "px-3 py-1 text-xs font-semibold rounded-full w-fit",
+    {
+      "bg-gray-200 text-gray-700": order.status === "waiting",
+      "bg-blue-200 text-blue-700": order.status === "diterima",
+      "bg-red-200 text-red-700": order.status === "ditolak",
+      "bg-yellow-200 text-yellow-700": order.status === "proses",
+      "bg-green-200 text-green-700": order.status === "selesai",
+    }
+  );
+
+  return (
+    <Card className="w-full max-w-md mx-auto mb-6 shadow hover:shadow-md transition">
+      <CardHeader className="flex flex-col gap-2">
+        
+        {/* Status Badge */}
+        <div className={statusColor}>{order.status.toUpperCase()}</div>
+
+        <div>
+          <h2 className="text-lg font-semibold">Order #{order.id}</h2>
+          <p className="text-sm text-muted-foreground">
+            User ID: {order.id_user}
+          </p>
+        </div>
+      </CardHeader>
+
+      <CardContent className="space-y-3">
+        {/* Detail Informasi */}
+        <div className="grid grid-cols-2 gap-y-2 text-sm">
+          <p className="font-semibold">Nama</p>
+          <p className="text-muted-foreground">{order.nama}</p>
+
+          <p className="font-semibold">Telepon</p>
+          <p className="text-muted-foreground">{order.tlp}</p>
+
+          <p className="font-semibold">Outlet</p>
+          <p className="text-muted-foreground">{order.id_outlet}</p>
+
+          <p className="font-semibold">Paket</p>
+          <p className="text-muted-foreground">
+            {order.jenis} - {order.nama_paket}
+          </p>
+
+          <p className="font-semibold">Qty</p>
+          <p className="text-muted-foreground">{order.qty}</p>
+
+          <p className="font-semibold">Harga Total</p>
+          <p className="font-bold">
+            Rp {order.harga_total.toLocaleString()}
+          </p>
+
+          <p className="font-semibold">Alamat</p>
+          <p className="text-muted-foreground">{order.alamat}</p>
+
+          <p className="font-semibold">Keterangan</p>
+          <p className="text-muted-foreground">{order.keterangan}</p>
+        </div>
+
+        {/* Tombol Aksi */}
+        {order.status === "waiting" && (
+          <div className="flex gap-3 pt-2">
+            <Button
+              className="flex-1 bg-green-600 hover:bg-green-700 text-white"
+              onClick={() => onAccept(order.id)}
+            >
+              ACC
+            </Button>
+
+            <Button
+              variant="destructive"
+              className="flex-1"
+              onClick={() => onReject(order.id)}
+            >
+              Reject
+            </Button>
+          </div>
+        )}
+
+      </CardContent>
+    </Card>
+  );
+};
