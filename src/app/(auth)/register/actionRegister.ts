@@ -38,11 +38,7 @@ export async function registerAction(prevState: any, formData: FormData) {
     const token = res.data.payload.data.token;
     const cookiesStore = await cookies();
 
-    cookiesStore.set("token", token, {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: true,
-    });
+    cookiesStore.set("token", token,  { httpOnly: true, sameSite: "none", secure: true, domain: ".ngrok-free.dev" , path: "/",  });
 
     return {
       success: true,

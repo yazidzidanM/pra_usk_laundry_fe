@@ -29,7 +29,7 @@ export async function loginAction(prevState: any, formData: FormData) {
     }
 
     const cookieStore = await cookies();
-    cookieStore.set("token", token, { httpOnly: true, sameSite: "lax", secure: true });
+    cookieStore.set("token", token,  { httpOnly: true, sameSite: "none", secure: true, domain: ".ngrok-free.dev", path: "/"});
 
     return { success: true, error: null, errors: null, data: token };
   } catch (error: any) {
