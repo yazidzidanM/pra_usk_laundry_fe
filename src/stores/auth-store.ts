@@ -23,7 +23,7 @@ export async function getUserFromCookie(): Promise<Idecoded> {
   }
 
   if (!token) {
-    redirect("/login");
+    redirect("/register");
   }
 
   try {
