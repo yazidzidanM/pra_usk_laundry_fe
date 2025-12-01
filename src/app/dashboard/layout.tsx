@@ -10,6 +10,9 @@ import AppSidebar from "@/components/common/app-sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import WrapperLayoutDashboard from "@/providers/dashboardLayoutWrap";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 
 type DashboardLayoutProps = {
   children: ReactNode

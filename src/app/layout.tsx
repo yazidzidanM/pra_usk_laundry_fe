@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "My Laundry",
   description: "open laundry for everyone",
 };
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 
 export default function RootLayout({
   children,
