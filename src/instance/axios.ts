@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const api = axios.create({
-  baseURL: "http://localhost:3112/api/v1",
+  baseURL: "https://tandy-multibladed-rhonda.ngrok-free.dev",
   headers: {
     "Content-Type": "application/json",
   },
