@@ -6,9 +6,10 @@ import Link from "next/link"
 import { redirect } from "next/navigation";
 export default async function Home() {
   const user = await getUserFromCookie()
-  if(!user){
-    redirect("/login")
-  }
+  // if(!user){
+  //   redirect("/login")
+  // }
+  console.log(user)
   return (
     <div className="bg-muted flex flex-col items-center justify-center h-screen space-y-4">
     <a className="text-4xl font-semibold">Welcome To Laundry {user?.nama}</a>

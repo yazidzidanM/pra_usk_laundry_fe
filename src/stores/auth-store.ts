@@ -2,7 +2,6 @@
 
 import { cookies, headers } from "next/headers";
 import jwt from "jsonwebtoken";
-import { redirect } from "next/navigation";
 
 export interface Idecoded {
   id: number;
@@ -19,20 +18,15 @@ export async function getUserFromCookie(): Promise<Idecoded | null> {
   const isPrefetch =
     h.get("rsc") === "1" || h.get("next-router-prefetch") === "1";
 
-  // ⛔ FIX: JIKA PREFETCH, JANGAN PERNAH REDIRECT
-  if (isPrefetch) {
-    return null;
-  }
+  // Jika prefetch, jangan decode token (biarkan null)
+  if (isPrefetch) return null;
 
-  // ⛔ FIX: JIKA TIDAK ADA TOKEN, REDIRECT
-  if (!token) {
-    redirect("/login");
-  }
+  if (!token) return null;
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as Idecoded;
     return decoded;
   } catch {
-    redirect("/login");
+    return null;
   }
 }
