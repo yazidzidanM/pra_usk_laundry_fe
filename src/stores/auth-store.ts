@@ -11,19 +11,22 @@ export interface Idecoded {
   role: string;
 }
 
-export async function getUserFromCookie(): Promise<Idecoded> {
+export async function getUserFromCookie(): Promise<Idecoded | null> {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
 
   const h = await headers();
-  const isRSC =  h.get("rsc") === "1" || h.get("next-router-prefetch") === "1";
+  const isPrefetch =
+    h.get("rsc") === "1" || h.get("next-router-prefetch") === "1";
 
-  if (!token && isRSC) {
-    return {} as any; // biarkan prefetch tidak mengganggu
+  // ⛔ FIX: JIKA PREFETCH, JANGAN PERNAH REDIRECT
+  if (isPrefetch) {
+    return null;
   }
 
+  // ⛔ FIX: JIKA TIDAK ADA TOKEN, REDIRECT
   if (!token) {
-    redirect("/register");
+    redirect("/login");
   }
 
   try {

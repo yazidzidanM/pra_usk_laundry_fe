@@ -11,7 +11,6 @@ import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import WrapperLayoutDashboard from "@/providers/dashboardLayoutWrap";
 
-
 type DashboardLayoutProps = {
   children: ReactNode
 }
