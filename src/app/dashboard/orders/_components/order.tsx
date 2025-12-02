@@ -10,22 +10,6 @@ import { api } from "@/instance/axios";
 
 export default function Orders() {
   const [id, setId] = useState<number>()
-  // const [datas, setDatas] = useState<IOrder[]>([])
-  // useEffect(() => {
-  //   const testFetching = async () => {
-  //     try {
-  //       const res = await api.get<responseOrder>("orders")
-  //       console.log("RESPONSE:", res)
-  //       const newres = res?.data?.payload?.data ?? []
-  //       setDatas(newres)
-  //     } catch (err) {
-  //       console.log("FETCH ERROR:", err)
-  //     }
-  //   }
-
-  //   testFetching()
-  // }, [])
-  // console.log(datas)
   const { data: orders, isLoading } = useGetOrders();
 
   const { mutate: updateMutate, error } = useUpdateOrder({
@@ -56,7 +40,7 @@ export default function Orders() {
   };
 
   return (
-    <div className="p-4 grid grid-cols-4 gap-8">
+    <div className="p-4 grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-8">
       {isLoading
         ? Array.from({ length: 8 }).map((_, i) => (
           <CardSkeleton key={i} />

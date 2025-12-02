@@ -72,7 +72,7 @@ export default function DataTable({
   })
 
   return (
-    <div className="w-3/5">
+    <div className="w-full md:w-4/5 xl:w-3/5">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter by username..."

@@ -39,13 +39,13 @@ export function PaketCardList({
         placeholder="Cari paket (nama, jenis, atau id outlet)..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="w-1/2"
+        className="w-full md:w-1/2"
       />
 
       {filteredData.length === 0 ? (
         <p className="text-sm text-muted-foreground">Tidak ada data ditemukan.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4">
           {filteredData.map((item) => (
             <PaketCard
               key={item.id}

@@ -21,7 +21,7 @@ export default function HorizontalCardList({ outlet }: HorizontalCardProps) {
     }
   })
   return (
-    <Card className="flex flex-row items-start gap-4 p-4 shadow-sm hover:shadow-md transition-shadow">
+    <Card className="flex flex-col sm:flex-row items-start gap-4 p-4 shadow-sm hover:shadow-md transition-shadow">
 
       <div className="h-36 w-36 min-w-36 rounded-lg overflow-hidden bg-muted border">
         <Image
@@ -35,7 +35,7 @@ export default function HorizontalCardList({ outlet }: HorizontalCardProps) {
 
       <div className="flex flex-col flex-1 gap-2">
         <h1 className="text-[1.3rem] font-semibold">Outlet-Id {outlet.id}</h1>
-        <div className="flex flex-row justify-between gap-4">
+        <div className="flex lg:flex-row flex-col justify-between gap-4">
           <div className="space-y-0.5 flex-1">
             <h3 className="text-[1rem] font-medium capitalize">
               Nama Outlet : {outlet.nama}
@@ -53,7 +53,7 @@ export default function HorizontalCardList({ outlet }: HorizontalCardProps) {
 
           <div className="flex flex-col gap-2 min-w-[200px] mr-2">
 
-            <Link href={`/dashboard/outlet/${outlet.id}/paket`} className="w-full">
+            <Link href={`/dashboard/packet/list`} className="w-full">
               <Button
                 className="w-full h-12 text-[16px] font-medium bg-blue-700 hover:bg-blue-600"
                 variant="secondary"
