@@ -1,9 +1,11 @@
-import { getUserFromCookie } from "@/stores/auth-store"
+"use client"
+
+import { useAuthStore } from "@/menageState/zustandStore"
 import Bill from "./_components/bill"
 
 
-export default async function BillPage() {
-  const user = await getUserFromCookie()
+export default function BillPage() {
+  const user = useAuthStore((s) => s.user)
   return (
     <div>
       <Bill user={user} />

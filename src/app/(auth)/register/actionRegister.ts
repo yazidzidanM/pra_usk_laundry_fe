@@ -1,6 +1,7 @@
 "use server";
 
 import { api } from "@/instance/axios";
+import { Idecoded } from "@/stores/auth-store";
 import { registerSchema } from "@/validations/authValidation";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -23,9 +24,8 @@ export async function registerAction(prevState: any, formData: FormData) {
         data: null,
       };
     }
-
     const { nama, username, password } = parsed.data;
-
+    
     const res = await api.post("/auth/register", { nama, username, password });
     if (!res) {
       return {
@@ -34,17 +34,12 @@ export async function registerAction(prevState: any, formData: FormData) {
         data: null,
       };
     }
-
-    const token = res.data.payload.data.token;
+    
+    const { result: user, token } = res.data.payload.data as { result: Idecoded; token: string };
     const cookiesStore = await cookies();
-
     cookiesStore.set("token", token,  { httpOnly: true, sameSite: "none", secure: true , path: "/",  });
 
-    return {
-      success: true,
-      error: null,
-      data: res?.data?.payload?.data,
-    };
+    return { success: true, user, token };
   } catch (error) {
     return {
         success: false,

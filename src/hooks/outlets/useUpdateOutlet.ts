@@ -10,7 +10,7 @@ type UpdateOutletPayload = {
 };
 
 export const updateOutlet = async ({ id, data }: UpdateOutletPayload) => {
-  const res = await api.put(`/outlet/${id}`, data);
+  const res = await api.put(`outlet/${id}`, data);
   return res.data;
 };
 

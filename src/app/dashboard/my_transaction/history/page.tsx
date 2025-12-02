@@ -1,9 +1,11 @@
-import { getUserFromCookie } from "@/stores/auth-store"
+"use client"
+
+import { useAuthStore } from "@/menageState/zustandStore"
 import HistoryTrxUser from "./_components/history"
 
 
-export default async function BillPage() {
-  const user = await getUserFromCookie()
+export default function BillPage() {
+  const user = useAuthStore((s) => s.user)
   return (
     <div>
       <HistoryTrxUser user={user} />

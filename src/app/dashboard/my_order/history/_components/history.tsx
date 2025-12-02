@@ -7,11 +7,11 @@ import { useDeleteCustomerOrder } from "@/hooks/customer/useCancelOrder";
 import { CardSkeleton } from "@/layouts/organism/CardSkeleton";
 
 export default function History({user}: any) {
-  const id_user = user.id
+  const id_user = user?.id
   console.log(id_user)
   const [idDel, setIdDel] = useState<number>()
 
-  const { data: orders, isLoading } = useGetCustomerOrderByIdUser({id: user.id as number});
+  const { data: orders, isLoading } = useGetCustomerOrderByIdUser({id: id_user});
   
   console.log(orders)
   const {mutate: mutateDelete} = useDeleteCustomerOrder({id: id_user as number})
@@ -36,7 +36,7 @@ export default function History({user}: any) {
         : 
         orders?.map(order => (
           <OrderCard
-            key={order.id}
+            key={order?.id}
             order={order ?? []}
             onCancel={handleCancel}
           />

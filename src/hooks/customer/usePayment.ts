@@ -5,7 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 export const doPayment = async (kode_invoice: string): Promise<{url: string}> => {
-  const res = await api.post(`/payment`, {kode_invoice});
+  const res = await api.post(`payment`, {kode_invoice});
   return res.data;
 };
 

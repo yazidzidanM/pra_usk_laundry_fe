@@ -5,8 +5,6 @@ import AddUserForm from "./addUserForm";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
 
-
-
 export default function AddUsersComponents() {
   const {data} = useGetOutlets()
   const Outlets = data ? data : []

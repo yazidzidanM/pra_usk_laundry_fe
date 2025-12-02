@@ -42,7 +42,7 @@ export default function TableTransaksi({ data }: { data: any[] }) {
                       t.dibayar === "dibayar" ? "bg-green-600" : "bg-red-600"
                     }
                   >
-                    {t.status}
+                    {t?.dibayar?.replace('_', ' ')}
                   </Badge>
                 </TableCell>
                 <TableCell>

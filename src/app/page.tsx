@@ -1,15 +1,12 @@
-"use server"
+"use client"
 
 import { Button } from "@/components/ui/button";
-import { getUserFromCookie } from "@/stores/auth-store";
+import { useAuthStore } from "@/menageState/zustandStore";
+
 import Link from "next/link"
-import { redirect } from "next/navigation";
-export default async function Home() {
-  const user = await getUserFromCookie()
-  // if(!user){
-  //   redirect("/login")
-  // }
-  console.log(user)
+export default function Home() {
+  const user = useAuthStore((u) => u.user)
+  
   return (
     <div className="bg-muted flex flex-col items-center justify-center h-screen space-y-4">
     <a className="text-4xl font-semibold">Welcome To Laundry {user?.nama}</a>

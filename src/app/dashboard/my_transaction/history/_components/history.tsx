@@ -6,7 +6,8 @@ import { UserTransactionSkeleton } from "@/layouts/organism/cardTrxSkeleton";
 
 
 export default function HistoryTrxUser({ user }: any) {
-  const { data, isLoading } = useGetTrxUser({ id_user: user.id });
+  const iduser = user?.id
+  const { data, isLoading } = useGetTrxUser({ id_user: iduser });
 
   if(data?.length === 0){
     return <div><p className="text-neutral-500">No data. make an order first</p></div>

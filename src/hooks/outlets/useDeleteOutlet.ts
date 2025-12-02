@@ -5,7 +5,7 @@ import { MutationConfig, queryClient } from "@/providers/ReactQueryProvider";
 import { useMutation } from "@tanstack/react-query";
 
 export const deleteOutlet = async (id: string | number) => {
-  const res = await api.delete(`/outlet/${id}`);
+  const res = await api.delete(`outlet/${id}`);
   return res.data;
 };
 

@@ -45,6 +45,7 @@ export default function AddUserForm() {
   }, [state]);
 
   const { data: data_outlet, isLoading: loadingOutlet, error: errorOutlet } = useGetOutlets()
+  console.log(data_outlet)
 
   return (
     <Card className="w-full max-w-lg mx-auto shadow-sm flex ">

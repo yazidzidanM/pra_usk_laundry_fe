@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 export const createOrder = async (data: TPesananForm) => {
-  const res = await api.post("/auth/order", data);
+  const res = await api.post("auth/order", data);
   return res.data;
 };
 

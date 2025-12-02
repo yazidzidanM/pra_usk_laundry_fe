@@ -5,7 +5,7 @@ import { queryOptions, useQuery } from "@tanstack/react-query";
 import { IOrder, responseOrder } from "../orders/useGetOrders";
 
 export const getCustomerOrderByIdUser = async (id: number): Promise<IOrder[]> => {
-  const res = await api.get<responseOrder>(`/auth/order/${id}`);
+  const res = await api.get<responseOrder>(`auth/order/${id}`);
   return res.data.payload.data ?? [];
 };
 

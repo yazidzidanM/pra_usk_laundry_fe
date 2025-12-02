@@ -23,7 +23,7 @@ type response = {
 }
 
 export const getUsers = async (): Promise<TUsers[]> => {
-  const res = await api.get<response>("/users")
+  const res = await api.get<response>("users")
   return res.data?.payload?.data ?? []
 }
 

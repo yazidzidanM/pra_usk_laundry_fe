@@ -5,7 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 export const deleteOrder = async (id: number) => {
-  const res = await api.delete(`/order/${id}`);
+  const res = await api.delete(`order/${id}`);
   return res.data;
 };
 

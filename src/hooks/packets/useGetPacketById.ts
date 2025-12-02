@@ -15,7 +15,7 @@ export type ResponsePaket = {
 };
 
 export const getPaketById = async (id: number): Promise<TPaket> => {
-  const res = await api.get<ResponsePaket>(`/paket/${id}`);
+  const res = await api.get<ResponsePaket>(`paket/${id}`);
   return res.data?.payload?.data ?? null;
 }
 

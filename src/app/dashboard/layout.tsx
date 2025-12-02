@@ -5,7 +5,6 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { ReactNode } from "react";
 import DashboardBreadcrumb from "./_components/dashboard-breadcrumb";
-import { getUserFromCookie } from "@/stores/auth-store";
 import AppSidebar from "@/components/common/app-sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
@@ -16,11 +15,10 @@ type DashboardLayoutProps = {
 }
 
 export default async function DashboardLayout({ children }: DashboardLayoutProps) {
-  const user = await getUserFromCookie()
   return (
     <div>
       <SidebarProvider>
-        <AppSidebar user={user} />
+        <AppSidebar />
         <WrapperLayoutDashboard>
             <header className="flex items-center h-16 justify-between gap-2 shrink-0 transition-[height,widht] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
               <div className="flex items-center gap-2 px-4">

@@ -12,7 +12,7 @@ type UpdatePaketPayload = {
 };
 
 export const updatePaket = async ({ id, data }: UpdatePaketPayload) => {
-  const res = await api.put(`/paket/${id}`, data);
+  const res = await api.put(`paket/${id}`, data);
   return res.data;
 };
 

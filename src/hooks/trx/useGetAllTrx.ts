@@ -34,7 +34,7 @@ export type ResponseTrx = {
 };
 
 export const getTrxs = async (): Promise<TTrx[]> => {
-  const res = await api.get<ResponseTrx>("/transaction");
+  const res = await api.get<ResponseTrx>("transaction");
   return res.data?.payload?.data ?? [];
 };
 const getTrxsQueryOptions = () => {

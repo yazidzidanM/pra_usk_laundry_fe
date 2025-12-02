@@ -14,7 +14,7 @@ type responseUser = {
 }
 
 export const getUserById = async (id: number): Promise<TUsers> => {
-  const res = await api.get<responseUser>(`/user/${id}`)
+  const res = await api.get<responseUser>(`user/${id}`)
   return res.data.payload.data ?? null
 }
 

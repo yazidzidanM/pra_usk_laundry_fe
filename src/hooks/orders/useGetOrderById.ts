@@ -6,7 +6,7 @@ import { IOrder, responseOrder } from "./useGetOrders";
 
 
 export const getOrderByIdUser = async (id: number): Promise<IOrder[]> => {
-  const res = await api.get<responseOrder>(`/order/${id}`);
+  const res = await api.get<responseOrder>(`order/${id}`);
   return res.data.payload.data ?? [];
 };
 

@@ -23,7 +23,7 @@ export type responseReport = {
 };
 
 export const getReportsByDate = async (dari: string, sampai: string): Promise<TReport[]> => {
-  const res = await api.get<responseReport>("/report", { params: { dari, sampai } });
+  const res = await api.get<responseReport>("report", { params: { dari, sampai } });
   return res.data.payload.data ?? [];
 }
 

@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { getPaketsQueryKey } from "@/keys/packetKey";
 
 export const deletePaket = async (id: number) => {
-  const res = await api.delete(`/paket/${id}`);
+  const res = await api.delete(`paket/${id}`);
   return res.data;
 };
 

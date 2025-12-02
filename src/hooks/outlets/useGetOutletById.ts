@@ -14,7 +14,7 @@ type responseOutlet = {
 }
 
 export const getOutletbyId = async (id: number): Promise<IOutlet> => {
-  const res = await api.get<responseOutlet>(`/outlet/${id}`)
+  const res = await api.get<responseOutlet>(`outlet/${id}`)
   return res.data.payload.data
 }
 

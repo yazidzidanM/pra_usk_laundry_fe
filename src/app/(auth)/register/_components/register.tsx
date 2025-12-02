@@ -13,6 +13,7 @@ import { registerAction } from "../actionRegister";
 import { registerSchema, typeRegister } from "@/validations/authValidation";
 import { FormInput } from "@/layouts/atoms/form-input";
 import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/menageState/zustandStore";
 
 export default function RegisterPage() {
   const [state, formAction, isPending] = useActionState(registerAction, INITIAL_STATE_REGISTER_FORM)
@@ -21,6 +22,7 @@ export default function RegisterPage() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<typeRegister>({
     resolver: zodResolver(registerSchema),
   })
+  const setLogin = useAuthStore((s) => s.setLogin);
 
   const onSubmit = (data: typeRegister) => {
     const formData = new FormData()
@@ -35,14 +37,15 @@ export default function RegisterPage() {
   }
 
   useEffect(() => {
-      if (state?.success) {
-        reset();
+      if (state?.success && state.user && state.token) {
+        setLogin(state.user, state.token);
+        reset()
         router.push("/");
+        console.log(state)
         return;
       }
       if (state?.error) {
-        toast.error("something error, please try again...");
-        console.log(state.error);
+        toast.error(state.error || "Login gagal");
       }
     }, [state]);
 

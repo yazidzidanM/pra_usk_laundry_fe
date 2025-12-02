@@ -12,8 +12,11 @@ import { useEffect, useState } from "react";
 import { useGetOrders } from "@/hooks/orders/useGetOrders";
 import { useUpcase } from "@/func/UpCase";
 import { LogOutAction } from "@/func/logout";
+import { useAuthStore } from "@/menageState/zustandStore";
 
-export default function AppSidebar({ user }: any) {
+export default function AppSidebar() {
+  const user = useAuthStore((u) => u.user)
+  console.log(user)
   const { data } = useGetOrders()
   const loading = !data;
 
@@ -25,7 +28,7 @@ export default function AppSidebar({ user }: any) {
     ? <div className="animate-pulse">+0</div>
     : data.filter(item => !["waiting", "ditolak", "selesai"].includes(item.status)).length;
 
-  const { nama, namauser, roleuser } = useUpcase(user.nama, user.username, user.role)
+  const { nama, namauser, roleuser } = useUpcase(user?.nama!,user?.username!, user?.role!)
   const { isMobile } = useSidebar()
   const pathname = usePathname() as unknown as string
   // const parts = pathname.join("/")
@@ -50,7 +53,7 @@ export default function AppSidebar({ user }: any) {
           <SidebarGroupLabel>Services</SidebarGroupLabel>
           <SidebarGroupContent className="flex flex-col gap-2">
             <SidebarMenu className="flex flex-col gap-1.5">
-              {SIDEBAR_MENU_LIST[user.role as SIDEBAR_MENU_KEY]?.map((item: any) => {
+              {SIDEBAR_MENU_LIST[user?.role as SIDEBAR_MENU_KEY]?.map((item: any) => {
                 const isSameSecret = SIDEBAR_SECRET_MENU_LIST.some(same => same.title === item.title)
                 const isSameOrders = SIDEBAR_ORDERS_MENU_LIST.some(same => same.title === item.title)
                 return (
@@ -141,7 +144,7 @@ export default function AppSidebar({ user }: any) {
           <SidebarMenuItem>
             <DropdownMenu >
               <DropdownMenuTrigger asChild>
-                <SidebarMenuButton size="lg" className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"><User2 /> {nama}
+                <SidebarMenuButton size="lg" className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"><User2 /> {nama ? nama : "Guest"}
                   <EllipsisVertical className="size-4 ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -161,7 +164,7 @@ export default function AppSidebar({ user }: any) {
                   <DropdownMenuItem className="flex py-2">
                     {roleuser} Account
                   </DropdownMenuItem>
-                  {user.role === "user" && 
+                  {user?.role === "user" && 
                   <DropdownMenuItem className="flex py-2">
                     <Receipt /> Billing
                   </DropdownMenuItem>

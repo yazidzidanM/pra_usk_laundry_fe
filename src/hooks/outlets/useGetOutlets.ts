@@ -22,7 +22,7 @@ type responseOutlet = {
 }
 
 export const getOutlets = async () : Promise<IOutlet[]>=> {
-  const res = await api.get<responseOutlet>("/outlets");
+  const res = await api.get<responseOutlet>("outlets");
     return res.data?.payload?.data ?? []
 };
 

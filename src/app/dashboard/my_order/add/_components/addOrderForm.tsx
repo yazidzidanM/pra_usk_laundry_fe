@@ -26,7 +26,7 @@ import { pesananSchema, TPesananForm } from "@/validations/OrderValidation";
 import { useCreateOrder } from "@/hooks/customer/useCreateOrder";
 
 export function AddOrderForm({user}: any) {
-  const id_user = user.id
+  const id_user = user?.id
   const { data: outlets = [] } = useGetOutlets();
   const { data: pakets = [] } = useGetPakets();
 

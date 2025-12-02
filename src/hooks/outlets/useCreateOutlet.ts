@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { getOutletsQueryKey } from "@/keys/outletKey";
 
 export const createOutlet = async (data: typeOutlet) => {
-  const res = await api.post("/outlet", data)
+  const res = await api.post("outlet", data)
   return res.data;
 }
 

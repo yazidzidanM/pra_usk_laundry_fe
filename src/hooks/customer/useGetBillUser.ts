@@ -23,7 +23,7 @@ type responseBill = {
 }
 
 export const getCustomerBillByIdUser = async (id: number): Promise<IBill[]> => {
-  const res = await api.get<responseBill>(`/auth/bill/${id}`);
+  const res = await api.get<responseBill>(`auth/bill/${id}`);
   return res.data.payload.data;
 };
 

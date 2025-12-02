@@ -6,7 +6,7 @@ import { getTrxQueryKey } from "@/keys/trxKey";
 import { ResponseTrx, TTrx } from "../trx/useGetAllTrx";
 
 export const getTrxUser = async (id_user: number): Promise<TTrx[]> => {
-  const res = await api.get<ResponseTrx>(`/my_transaction/${id_user}`);
+  const res = await api.get<ResponseTrx>(`my_transaction/${id_user}`);
   return res.data?.payload?.data ?? [];
 };
 const getTrxUserQueryOptions = (id_user: number) => {

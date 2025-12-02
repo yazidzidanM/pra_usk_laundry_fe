@@ -33,7 +33,7 @@ export type responseOrder = {
 }
 
 export const getOrders = async (): Promise<IOrder[]> => {
-  const res = await api.get<responseOrder>("/orders");
+  const res = await api.get<responseOrder>("orders");
   return res.data.payload.data ?? []
 }
 

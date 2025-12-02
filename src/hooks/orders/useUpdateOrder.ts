@@ -12,7 +12,7 @@ type UpdateStatusOrder = {
 };
 
 export const updateOrder = async ({id, status, }: UpdateStatusOrder) => {
-  const res = await api.put(`/order/${id}`, {status});
+  const res = await api.put(`order/${id}`, {status});
   return res.data
 }
 

@@ -23,7 +23,7 @@ export type ResponsePakets = {
 };
 
 export const getPakets = async (): Promise<TPaket[]> => {
-  const res = await api.get<ResponsePakets>("/pakets");
+  const res = await api.get<ResponsePakets>("pakets");
   return res.data?.payload?.data ?? [];
 };
 const getPaketsQueryOptions = () => {

@@ -7,8 +7,9 @@ import { useDoPayment } from "@/hooks/customer/usePayment"
 import { BillCardSkeleton } from "@/layouts/organism/billCardSKeleton"
 
 export default function Bill({ user }: any) {
-  const { data, isLoading } = useGetCustomerBillByIdUser({ id: user.id })
-  const {mutateAsync: payment } = useDoPayment({id: user.id as number})
+  const id_user = user?.id
+  const { data, isLoading } = useGetCustomerBillByIdUser({ id: id_user })
+  const {mutateAsync: payment } = useDoPayment({id: id_user as number})
 
   const handlePay = async (kode_invoice: string) => {
     console.log(kode_invoice)
@@ -19,6 +20,9 @@ export default function Bill({ user }: any) {
   if(data?.length === 0){
     return <div><p className="text-neutral-500">No data. make an order first</p></div>
   }
+
+  console.log(id_user)
+  console.log(data)
 
   return (
     <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -31,7 +35,7 @@ export default function Bill({ user }: any) {
 
       {!isLoading && data?.map((bill: any) => (
         <BillCard
-          key={bill.kode_invoice}
+          key={bill.id}
           bill={bill}
           onPay={() => handlePay(bill.kode_invoice)}
         />

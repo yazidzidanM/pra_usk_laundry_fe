@@ -13,10 +13,12 @@ import { Loader2 } from "lucide-react";
 import { loginSchema, typeLogin } from "@/validations/authValidation";
 import { useRouter } from "next/navigation";
 import { FormInput } from "@/layouts/atoms/form-input";
+import { useAuthStore } from "@/menageState/zustandStore";
 
 export default function Login() {
   const [state, formAction, isPending] = useActionState(loginAction, INITIAL_STATE_LOGIN_FORM);
   const router = useRouter();
+  const setLogin = useAuthStore((s) => s.setLogin);
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm<typeLogin>({
     resolver: zodResolver(loginSchema),
@@ -34,14 +36,15 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (state?.success) {
-      reset();
+    if (state?.success && state.user && state.token) {
+      setLogin(state.user, state.token);
+      reset()
       router.push("/");
+      console.log(state)
       return;
     }
     if (state?.error) {
-      toast.error("cannot find your account, please try again...");
-      console.log(state.error);
+      toast.error(state.error || "Login gagal");
     }
   }, [state]);
 
