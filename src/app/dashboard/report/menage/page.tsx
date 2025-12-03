@@ -7,55 +7,6 @@ import TableTransaksi from "./_components/tableReport";
 import { useState } from "react";
 import { useGetReportsByDate } from "@/hooks/report/useGetByDate";
 
-// Simulasi fetch dari database
-// const data = [
-//   {
-//     "kode_invoice": "INV001",
-//     "nama_pelanggan": "Andi",
-//     "tgl_transaksi": "2023-12-01",
-//     "tgl_bayar": "2023-12-05",
-//     "total": 100000,
-//     "dibayar": 100000,
-//     "status": "LUNAS"
-//   },
-//   {
-//     "kode_invoice": "INV002",
-//     "nama_pelanggan": "Budi",
-//     "tgl_transaksi": "2023-12-05",
-//     "tgl_bayar": null,
-//     "total": 50000,
-//     "dibayar": 0,
-//     "status": "BELUM LUNAS"
-//   },
-//   {
-//     "kode_invoice": "INV003",
-//     "nama_pelanggan": "Cici",
-//     "tgl_transaksi": "2023-12-10",
-//     "tgl_bayar": "2023-12-12",
-//     "total": 200000,
-//     "dibayar": 200000,
-//     "status": "LUNAS"
-//   },
-//   {
-//     "kode_invoice": "INV004",
-//     "nama_pelanggan": null,
-//     "tgl_transaksi": "2023-12-15",
-//     "tgl_bayar": null,
-//     "total": 80000,
-//     "dibayar": 0,
-//     "status": "BELUM LUNAS"
-//   },
-//   {
-//     "kode_invoice": "INV005",
-//     "nama_pelanggan": "Dedi",
-//     "tgl_transaksi": "2023-12-20",
-//     "tgl_bayar": "2023-12-22",
-//     "total": 150000,
-//     "dibayar": 150000,
-//     "status": "LUNAS"
-//   }
-// ]
-
 export default  function Page() {
   const [Time, setTime] = useState({ dari: "", sampai: "" })
 
