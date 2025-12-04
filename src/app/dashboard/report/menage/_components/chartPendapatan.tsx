@@ -23,7 +23,7 @@ ChartJS.register(
 
 export default function ChartPendapatan({ data }: { data: any[] }) {
   const chartData = {
-    labels: data.map((t) => t.tgl_transaksi.split('T')[0]),
+    labels: data.map((t) => t.tanggal),
     datasets: [
       {
         label: "Pendapatan",
