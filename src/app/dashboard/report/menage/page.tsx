@@ -6,28 +6,12 @@ import TableTransaksi from "./_components/tableReport";
 import { useEffect, useState } from "react";
 import { TReport, useGetReportsByDate } from "@/hooks/report/useGetByDate";
 import { AnimatedCounter } from "@/animations/animate";
-// import { useAuthStore } from "@/menageState/zustandStore";
-// import { useRouter } from "next/navigation";
-// import { permissions } from "@/func/permission";
-// import Forbidden from "@/app/forbidden/page";
-
 export interface IChartPendapatan extends TReport {
   tanggal: string,
   jumlah: number
 }
 
 export default function Page() {
-  // const router = useRouter()
-  // const user = useAuthStore((u) => u.user)
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push("/")
-  //   }
-  // }, [user])
-  // const authorization = permissions(user?.role!, "report")
-  // console.log(authorization)
-  // if (!authorization) return <Forbidden/>
-
   const [Time, setTime] = useState({ dari: "", sampai: "" })
   const { data, isLoading, isError } = useGetReportsByDate(Time)
 
@@ -66,6 +50,22 @@ export default function Page() {
     setTime(time)
   }
 
+  //handle data table
+  const limit = 10;
+  const [page, setPage] = useState(1);
+  const totalPage = Math.ceil((data?.length ?? 1) / limit);
+
+  const start = (page - 1) * limit;
+  const end = start + limit;
+  const sliced = data?.slice(start, end);
+
+  const handlePrev = () => {
+    setPage((p) => p - 1)
+  }
+  const handleNext = () => {
+    setPage((p) => p + 1)
+  }
+
   // console.log(data)
   // console.log(isError)
 
@@ -83,7 +83,13 @@ export default function Page() {
 
       <ChartPendapatan data={result ?? []} />
 
-      <TableTransaksi data={data ?? []} />
+      <TableTransaksi
+        data={sliced ?? []}
+        page={page}
+        totalPage={totalPage}
+        prev={handlePrev}
+        next={handleNext}
+      />
     </div>
   );
 }

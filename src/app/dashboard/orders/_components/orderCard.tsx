@@ -29,7 +29,6 @@ export const OrderCard: React.FC<OrderCardProps> = ({
     <Card className="w-full max-w-md mx-auto mb-6 shadow hover:shadow-md transition">
       <CardHeader className="flex flex-col gap-2">
         
-        {/* Status Badge */}
         <div className={statusColor}>{order.status.toUpperCase()}</div>
 
         <div>
@@ -41,7 +40,6 @@ export const OrderCard: React.FC<OrderCardProps> = ({
       </CardHeader>
 
       <CardContent className="space-y-3">
-        {/* Detail Informasi */}
         <div className="grid grid-cols-2 gap-y-2 text-sm">
           <p className="font-semibold">Nama</p>
           <p className="text-muted-foreground">{order.nama}</p>
@@ -72,7 +70,6 @@ export const OrderCard: React.FC<OrderCardProps> = ({
           <p className="text-muted-foreground">{order.keterangan}</p>
         </div>
 
-        {/* Tombol Aksi */}
         {order.status === "waiting" && (
           <div className="flex gap-3 pt-2">
             <Button

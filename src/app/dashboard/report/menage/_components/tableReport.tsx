@@ -8,12 +8,44 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
-export default function TableTransaksi({ data }: { data: any[] }) {
+export type TDataTableProps = {
+  data: any[];
+  page: number;
+  totalPage: number;
+  prev: () => void;
+  next: () => void;
+}
+
+export default function TableTransaksi({ data, page, totalPage, prev, next }: TDataTableProps) {
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle>Daftar Transaksi</CardTitle>
+
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            onClick={() => prev()}
+            disabled={page === 1}
+          >
+            Prev
+          </Button>
+          <Button variant="outline" className="cursor-default">
+            <span className="text-sm">
+              {page}/{totalPage}
+            </span>
+          </Button>
+
+          <Button
+            variant="outline"
+            onClick={() => next()}
+            disabled={page === totalPage}
+          >
+            Next
+          </Button>
+        </div>
       </CardHeader>
 
       <CardContent>
@@ -38,21 +70,22 @@ export default function TableTransaksi({ data }: { data: any[] }) {
                 <TableCell>Rp {t.total?.toLocaleString()}</TableCell>
                 <TableCell>
                   <Badge
-                    className={
-                      t.dibayar === "dibayar" ? "bg-green-600" : "bg-red-600"
-                    }
+                    variant="outline"
+                    className={`${t.dibayar === "dibayar" ? "bg-green-500" : "bg-red-600"} text-white px-2 py-1 rounded-xl`}
                   >
                     {t?.dibayar?.replace('_', ' ')}
                   </Badge>
                 </TableCell>
                 <TableCell>
                   <Badge
-                    className={
-                      t.status === "baru" ? "bg-blue-500" :
-                        t.status === "proses" ? "bg-yellow-500" :
-                          t.status === "selesai" ? "bg-green-600" :
-                            "bg-teal-600"
-                    }
+                    variant="outline"
+                    className={`
+                    ${t.status === "baru" ? "bg-sky-600" : ""}
+                    ${t.status === "proses" ? "bg-yellow-500" : ""}
+                    ${t.status === "selesai" ? "bg-lime-600" : ""}
+                    ${t.status === "diambil" ? "bg-teal-600" : ""}
+                    text-white px-2 py-1 rounded-xl
+                  `}
                   >
                     {t.status}
                   </Badge>

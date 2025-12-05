@@ -4,7 +4,8 @@ import { QueryConfig } from "@/providers/ReactQueryProvider";
 import { queryOptions, useQuery } from "@tanstack/react-query";
 
 export type TReport = {
-kode_invoice: string;
+  kode_invoice: string;
+  id_outlet?: number;
   nama_pelanggan?: string;
   tgl_transaksi: string;
   tgl_bayar: string | null;
