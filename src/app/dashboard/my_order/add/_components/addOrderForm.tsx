@@ -24,8 +24,9 @@ import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { useEffect, useMemo } from "react";
 import { pesananSchema, TPesananForm } from "@/validations/OrderValidation";
 import { useCreateOrder } from "@/hooks/customer/useCreateOrder";
+import { Loader2 } from "lucide-react";
 
-export function AddOrderForm({user}: any) {
+export function AddOrderForm({ user }: any) {
   const id_user = user?.id
   const { data: outlets = [] } = useGetOutlets();
   const { data: pakets = [] } = useGetPakets();
@@ -72,16 +73,18 @@ export function AddOrderForm({user}: any) {
     form.setValue("harga_total", harga * qty);
   }, [form.watch("harga"), form.watch("qty")]);
 
-  const createPesanan = useCreateOrder({id: id_user as number});
+  const createPesanan = useCreateOrder({ id: id_user as number });
 
   const submitForm = (values: TPesananForm) => {
-    const payload = {id_user, ...values}
-    console.log(payload)
+    const payload = { id_user, ...values }
     createPesanan.mutate(payload);
-    form.reset()
   };
 
-  console.log(createPesanan.error)
+  useEffect(() => {
+    if (createPesanan.isSuccess) {
+      form.reset()
+    }
+  }, [createPesanan, form])
 
   return (
     <Card className="w-full max-w-lg mx-auto">
@@ -93,7 +96,10 @@ export function AddOrderForm({user}: any) {
 
           <div className="space-y-2">
             <Label>Nama</Label>
-            <Input {...form.register("nama")} placeholder="Masukkan Nama..."/>
+            <Input {...form.register("nama")} placeholder="Masukkan Nama..." />
+            {form.formState.errors.nama?.message && (
+              <span className="text-red-500 text-sm">{form.formState.errors.nama?.message}</span>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -110,16 +116,25 @@ export function AddOrderForm({user}: any) {
                 <SelectItem value="P">Perempuan</SelectItem>
               </SelectContent>
             </Select>
+            {form.formState.errors.jenis_kelamin?.message && (
+              <span className="text-red-500 text-sm">{form.formState.errors.jenis_kelamin?.message}</span>
+            )}
           </div>
 
           <div className="space-y-2">
             <Label>Alamat</Label>
-            <Input {...form.register("alamat")} placeholder="Masukkan alamat anda"/>
+            <Input {...form.register("alamat")} placeholder="Masukkan alamat anda" />
+            {form.formState.errors.alamat?.message && (
+              <span className="text-red-500 text-sm">{form.formState.errors.alamat?.message}</span>
+            )}
           </div>
 
           <div className="space-y-2">
             <Label>No Telepon</Label>
             <Input {...form.register("tlp")} placeholder="Contoh: 08..." />
+            {form.formState.errors.tlp?.message && (
+              <span className="text-red-500 text-sm">{form.formState.errors.tlp?.message}</span>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -142,6 +157,9 @@ export function AddOrderForm({user}: any) {
                 ))}
               </SelectContent>
             </Select>
+            {form.formState.errors.id_outlet?.message && (
+              <span className="text-red-500 text-sm">{form.formState.errors.id_outlet?.message}</span>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -166,6 +184,9 @@ export function AddOrderForm({user}: any) {
                 ))}
               </SelectContent>
             </Select>
+            {form.formState.errors.id_paket?.message && (
+              <span className="text-red-500 text-sm">{form.formState.errors.id_paket?.message}</span>
+            )}
           </div>
           <div className="space-y-2">
             <Label>jenis (Otomatis)</Label>
@@ -187,6 +208,9 @@ export function AddOrderForm({user}: any) {
               {...form.register("qty", { valueAsNumber: true })}
               placeholder="Contoh: 2..."
             />
+            {form.formState.errors.qty?.message && (
+              <span className="text-red-500 text-sm">{form.formState.errors.qty?.message}</span>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -196,11 +220,18 @@ export function AddOrderForm({user}: any) {
 
           <div className="space-y-2">
             <Label>Keterangan</Label>
-            <Input {...form.register("keterangan")} placeholder="Contoh: baju putih pisahkan..."/>
+            <Input {...form.register("keterangan")} placeholder="Contoh: baju putih pisahkan..." />
+            {form.formState.errors.keterangan?.message && (
+              <span className="text-red-500 text-sm">{form.formState.errors.keterangan?.message}</span>
+            )}
           </div>
 
-          <Button type="submit" className="w-full">
-            Buat Pesanan
+          <Button 
+          type="submit" 
+          className="w-full"
+          disabled={form.formState.isSubmitting}
+          >
+            {form.formState.isSubmitting ? <Loader2 className="animate-spin" /> : "Buat Pesanan"}
           </Button>
         </form>
       </CardContent>

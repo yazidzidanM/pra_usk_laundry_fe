@@ -19,7 +19,7 @@ export default function MyOrderPage() {
     user={user}
     onWaiting={<AnimatedCounter target={orders?.filter((u) => u.status === "waiting")?.length ?? 0} duration={1000}/>}
     onAccept={<AnimatedCounter target={orders?.filter((u) => u.status === "diterima")?.length ?? 0} duration={1000}/>}
-    onProcess={<AnimatedCounter target={orders?.filter((u) => u.status === "process")?.length ?? 0} duration={1000}/>}
+    onProcess={<AnimatedCounter target={orders?.filter((u) => u.status === "proses")?.length ?? 0} duration={1000}/>}
     done={<AnimatedCounter target={orders?.filter((u) => u.status === "selesai")?.length ?? 0} duration={1000}/>}
     dataMember={member ?? []} 
     />

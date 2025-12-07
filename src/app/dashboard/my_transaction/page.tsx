@@ -27,7 +27,7 @@ export default function Page(){
       hasTaken={<AnimatedCounter target={transactions?.filter((i) => i.status === "diambil").length ?? 0} duration={1000}/>}
       billing={<AnimatedCounter  target={bills?.filter((i) => i.dibayar !== "dibayar").reduce((a, b) => a + b.harga_total, 0)?? 0} duration={1000}/>}
       />
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 w-full mb-16">
         <div className="lg:col-span-4 px-4">
           <TransactionCarousel data={details ?? []} />
         </div>
