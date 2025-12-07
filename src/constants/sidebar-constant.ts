@@ -179,11 +179,11 @@ export const SIDEBAR_MENU_LIST = {
       icon: ClipboardList,
       features: [
         {
-          title: "Buat Pesanan",
+          title: "Make an Order",
           url: "/dashboard/my_order/add",
         },
         {
-          title: "Riwayat Pesanan",
+          title: "History Order",
           url: "/dashboard/my_order/history",
         },
       ],

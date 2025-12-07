@@ -7,6 +7,7 @@ import {
   User,
   Wallet,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface IUserTrx {
   id: number;
@@ -25,12 +26,16 @@ interface IUserTrx {
   id_pesanan: number;
 }
 
-export function UserTransactionCard({ trx }: { trx: IUserTrx }) {
+type UserTransactionCardProps = { 
+  trx: IUserTrx;
+  handleTake: (id_pesanan: number) => void 
+}
+export function UserTransactionCard({ trx, handleTake }: UserTransactionCardProps) {
   const statusColor: Record<string, string> = {
     baru: "bg-gray-600",
     proses: "bg-yellow-600",
-    selesai: "bg-blue-600",
-    diambil: "bg-green-600",
+    selesai: "bg-blue-500",
+    diambil: "bg-teal-500",
   };
 
   return (
@@ -48,7 +53,7 @@ export function UserTransactionCard({ trx }: { trx: IUserTrx }) {
           <Badge
             className={
               trx.dibayar === "dibayar"
-                ? "bg-green-600"
+                ? "bg-emerald-600"
                 : "bg-red-600"
             }
           >
@@ -96,6 +101,26 @@ export function UserTransactionCard({ trx }: { trx: IUserTrx }) {
             Pajak: <span className="text-white">{trx.pajak}</span>
           </span>
         </div>
+        <Button
+          className={`w-full mt-2 cursor-pointer 
+            ${trx.status !== "selesai" ? "bg-gray-600 cursor-not-allowed" 
+              : 
+              `${trx.dibayar === "belum_dibayar" ? "bg-red-400" 
+                :
+                "bg-blue-600 hover:bg-blue-700"}`
+            } text-white font-semibold`}
+          onClick={() => handleTake(trx.id_pesanan)}
+          disabled={trx.status !== "selesai" ? true : false}
+        >
+          {trx.dibayar !== "dibayar" ? "You should pay first" 
+          : 
+          `${trx.status === "selesai" ? "Ambil" 
+            : `
+            ${trx.status === "diambil" ? "Sudah Diambil" 
+              : 
+              "Wait until done"}`}`
+          }
+        </Button>
       </CardContent>
     </Card>
   );

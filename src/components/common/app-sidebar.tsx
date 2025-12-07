@@ -166,7 +166,9 @@ export default function AppSidebar() {
                   </DropdownMenuItem>
                   {user?.role === "user" && 
                   <DropdownMenuItem className="flex py-2">
-                    <Receipt /> Billing
+                    <Link href="/dashboard/my_transaction/paid" className="flex flex-row gap-2">
+                      <Receipt /> Billing
+                    </Link>
                   </DropdownMenuItem>
                   }
                   <DropdownMenuItem onClick={() => LogOutAction()} className="flex py-2 mb-1">

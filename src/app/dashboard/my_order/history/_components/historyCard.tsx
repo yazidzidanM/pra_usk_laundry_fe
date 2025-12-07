@@ -1,3 +1,4 @@
+"use client"
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { IOrder } from "@/hooks/orders/useGetOrders";
@@ -75,6 +76,15 @@ export const OrderCard: React.FC<OrderCardProps> = ({ order, onCancel }) => {
             onClick={() => onCancel(order.id)}
           >
             Batalkan Pesanan
+          </Button>
+        )}
+        {order.status === "ditolak" && (
+          <Button
+            variant="destructive"
+            className="w-full mt-2 cursor-pointer"
+            onClick={() => onCancel(order.id)}
+          >
+            Hapus Pesanan
           </Button>
         )}
       </CardContent>

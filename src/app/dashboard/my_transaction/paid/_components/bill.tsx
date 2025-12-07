@@ -8,7 +8,7 @@ import { BillCardSkeleton } from "@/layouts/organism/billCardSKeleton"
 
 export default function Bill({ user }: any) {
   const id_user = user?.id
-  const { data, isLoading } = useGetCustomerBillByIdUser({ id: id_user })
+  const { data, isLoading } = useGetCustomerBillByIdUser({ id: id_user, queryConfig: { enabled: !!id_user } });
   const {mutateAsync: payment } = useDoPayment({id: id_user as number})
 
   const handlePay = async (kode_invoice: string) => {

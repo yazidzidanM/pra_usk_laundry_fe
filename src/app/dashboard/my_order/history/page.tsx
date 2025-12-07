@@ -3,6 +3,7 @@
 import { useAuthStore } from "@/menageState/zustandStore";
 import History from "./_components/history";
 import AlertPayment from "@/layouts/molecules/alert";
+import { toast } from "sonner";
 
 export default function HistoryPage() {
   const user = useAuthStore((s) => s.user)
@@ -16,7 +17,14 @@ export default function HistoryPage() {
             !
           </div>
 
-          <div className="absolute bottom-full right-0 mb-2 w-96 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 z-50">
+          <div className="absolute bottom-full right-0 mb-2 w-96 opacity-0 
+          group-hover:opacity-100 
+          group-active:opacity-100 
+          pointer-events-none 
+          group-hover:pointer-events-auto 
+          group-hover:pointer-events-auto 
+          transition-all duration-300 z-50"
+          >
             <AlertPayment />
           </div>
         </div>

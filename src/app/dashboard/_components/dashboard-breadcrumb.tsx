@@ -20,7 +20,7 @@ export default function DashboardBreadcrumb() {
                 >{path.replace('_', ' ')}
                 </BreadcrumbLink>
               ) : (
-                <BreadcrumbPage>{path}</BreadcrumbPage>
+                <BreadcrumbPage>{path.replace('_', ' ')}</BreadcrumbPage>
               )}
             </BreadcrumbItem>
             {index < paths.length - 1 && <BreadcrumbSeparator />}
