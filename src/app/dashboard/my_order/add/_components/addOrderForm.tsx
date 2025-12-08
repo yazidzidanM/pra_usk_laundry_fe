@@ -80,11 +80,16 @@ export function AddOrderForm({ user }: any) {
     createPesanan.mutate(payload);
   };
 
+  form.formState.isSubmitSuccessful
+
   useEffect(() => {
-    if (createPesanan.isSuccess) {
+    if (form.formState.isSubmitSuccessful) {
       form.reset()
     }
-  }, [createPesanan, form])
+  }, [form.formState.isSubmitSuccessful])
+
+  // console.log(form.formState.isSubmitting) 
+  console.log(form.formState.isSubmitSuccessful) 
 
   return (
     <Card className="w-full max-w-lg mx-auto">

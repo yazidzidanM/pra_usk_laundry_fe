@@ -8,8 +8,8 @@ import { toast } from "sonner";
 export default function HistoryPage() {
   const user = useAuthStore((s) => s.user)
   return (
-    <div className="relative h-full w-full">
-      <History user={user} />
+    <div className="relative h-full w-full" suppressHydrationWarning>
+      <History user={user ?? []} />
 
       <div className="absolute bottom-3 right-3">
         <div className="group relative">
@@ -21,7 +21,6 @@ export default function HistoryPage() {
           group-hover:opacity-100 
           group-active:opacity-100 
           pointer-events-none 
-          group-hover:pointer-events-auto 
           group-hover:pointer-events-auto 
           transition-all duration-300 z-50"
           >

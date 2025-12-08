@@ -5,12 +5,12 @@ import { getUsersQueryKey } from "@/keys/usersKeey";
 import { QueryConfig } from "@/providers/ReactQueryProvider";
 import { queryOptions, useQuery } from "@tanstack/react-query";
 
-type TUsers = {
+export type TUsers = {
   id: number;
   username: string;
   nama: string;
   id_outlet: number | null;
-  role: "kasir" | "owner" | "user";
+  role: "kasir" | "owner" | "user" | "admin";
 }
 
 type response = {

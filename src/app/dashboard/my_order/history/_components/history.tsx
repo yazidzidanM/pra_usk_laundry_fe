@@ -9,7 +9,7 @@ import { CardSkeleton } from "@/layouts/organism/CardSkeleton";
 export default function History({user}: any) {
   const id_user = user?.id
   console.log(id_user)
-  const { data: orders, isLoading } = useGetCustomerOrderByIdUser({id: id_user});
+  const { data: orders, isLoading } = useGetCustomerOrderByIdUser({id: id_user as number});
   
   console.log(orders)
   const {mutate: mutateDelete} = useDeleteCustomerOrder({id: id_user as number})

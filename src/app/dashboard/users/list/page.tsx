@@ -20,7 +20,7 @@ export default function ListUsersPage() {
   const [isOpen, setIsOpen] = useState(false)
   const [id, setId] = useState<number>()
 
-  const { mutate: mutateDelete } = useDeleteUser()
+  const { mutate: mutateDelete, error } = useDeleteUser()
   const { data: dataUsers, isPending } = useGetUsers()
   const { data: selectedUser, } = useGetUserById({
     id: id as number,
@@ -37,6 +37,8 @@ export default function ListUsersPage() {
     },
     onDelete: (id: number) => mutateDelete(id),
   })
+
+  console.log(error)
   
   const users = dataUsers ? dataUsers : []
   return (
