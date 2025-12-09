@@ -5,7 +5,6 @@ import {
   AreaChart,
   Area,
   XAxis,
-  YAxis,
   Tooltip,
   ResponsiveContainer,
   Legend,
@@ -20,7 +19,7 @@ export default function ChartRolePerOutlet({ data }: { data: any[] }) {
 
       <CardContent>
         <div className="h-[330px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="100%" height="100%" key={data.length}>
             <AreaChart data={data}>
               <defs>
                 <linearGradient id="adminGrad" x1="0" y1="0" x2="0" y2="1">
@@ -51,14 +50,6 @@ export default function ChartRolePerOutlet({ data }: { data: any[] }) {
                 axisLine={{ stroke: "#475569" }}
                 tick={{ fill: "#cbd5e1", fontSize: 12 }}
               />
-
-              {/* <YAxis
-                stroke="#94a3b8"
-                tickLine={false}
-                axisLine={false}
-                tick={{ fill: "#cbd5e1", fontSize: 12 }}
-              /> */}
-
               <Tooltip
                 cursor={{ stroke: "#fff", strokeWidth: 1, opacity: 0.1 }}
                 content={({ active, payload, label }) => {
@@ -97,30 +88,44 @@ export default function ChartRolePerOutlet({ data }: { data: any[] }) {
                 type="monotone"
                 dataKey="admin"
                 stroke="#14b8a6"
-                strokeWidth={2}
                 fill="url(#adminGrad)"
+                strokeWidth={2}
+                animationBegin={0}
+                animationDuration={1200}
+                animationEasing="ease-out"
               />
+
               <Area
                 type="monotone"
                 dataKey="kasir"
                 stroke="#6366f1"
-                strokeWidth={2}
                 fill="url(#kasirGrad)"
+                strokeWidth={2}
+                animationBegin={300}
+                animationDuration={1200}
+                animationEasing="ease-out"
               />
+
               <Area
                 type="monotone"
                 dataKey="owner"
                 stroke="#f59e0b"
-                strokeWidth={2}
                 fill="url(#ownerGrad)"
+                strokeWidth={2}
+                animationBegin={500}
+                animationDuration={1200}
+                animationEasing="ease-out"
               />
 
               <Area
                 type="monotone"
                 dataKey="user"
                 stroke="#ef4444"
-                strokeWidth={2}
                 fill="url(#userGrad)"
+                strokeWidth={2}
+                animationBegin={700}
+                animationDuration={1200}
+                animationEasing="ease-out"
               />
             </AreaChart>
 

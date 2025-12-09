@@ -13,7 +13,7 @@ export interface IChartPendapatan extends TReport {
 
 export default function Page() {
   const [Time, setTime] = useState({ dari: "", sampai: "" })
-  const { data, isLoading, isError } = useGetReportsByDate(Time)
+  const { data } = useGetReportsByDate(Time)
 
   //data summary
   const totalLunas = data?.filter((t) => t.dibayar === "dibayar");
